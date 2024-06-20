@@ -193,3 +193,14 @@ A cron expression in Jenkins consists of five fields separated by spaces:
 3. Enter your cron expression in the "Schedule" field.
 
 By using these cron expressions, you can effectively schedule your Jenkins jobs to run at specific times or intervals as required.
+
+## To displaye Extent Report with proper style
+Install html publisher plugin
+Go to Manage Jenkins - > Script Console - > enter below snippet and run
+```java
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "sandbox allow-scripts; default-src 'self'; script-src * 'unsafe-eval'; img-src *");
+```
+Restart Jenkins and launch with below command
+java -Dhudson.model.DirectoryBrowserSupport.CSP="" -jar jenkins.war
+```
+
