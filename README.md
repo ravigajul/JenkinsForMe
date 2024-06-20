@@ -1,8 +1,10 @@
 # JenkinsForMe
 https://github.com/jenkinsci/docker/blob/master/README.mddocker 
 Ensure the environment variable is correctly set before running docker commands DOCKER_CERT_PATH=C:\Users\<user>\.docker\machine\certs
+```bash
 docker run -d -v C:\Users\rgajul\jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
 docker run -d -v C:\Users\rgajul\jenkins_home:/var/jenkins_home -p 2020:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
+```
 
 # Docker-Compose
 docker run -d -v jenkins_home:/var/jenkins_home -p 2020:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
