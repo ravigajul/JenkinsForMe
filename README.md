@@ -53,20 +53,32 @@ docker run -d -v C:\Users\rgajul\jenkins_home:/var/jenkins_home -p 2020:8080 -p 
         1. Sudo du -sh /var/lib/docker
 	
 # Docker-compose.yml
-
-    version: '3'
-    services:
-    jenkins:
-    container_name: jenkins
-    image: jenkins/jenkins
+```yml
+version: '3'
+services:
+  jenkins: null
+  container_name: jenkins
+  image: jenkins/jenkins
+  ports:
+    - '8080:8080'
+  volumes:
+    - '$PWD/jenkins_home:/var/jenkins_home'
+  networks:
+    - net
+  git:
+    container_name: git-server
+    image: 'gitlab/gitlab-ee:latest'
+    hostname: gitlab.example.com
     ports:
-        - "8080:8080"
+      - '8090:80'
     volumes:
-        - "$PWD/jenkins_home:/var/jenkins_home"
+      - '/srv/gitlab/config:/etc/gitlab'
+      - '/srv/gitlab/logs:/var/log/gitlab'
+      - '/srv/gitlab/data:/var/opt/gitlab'
     networks:
-        - net
-    networks:
-    net:
+      - net: null
+```
+    
 
 # Give jenkins user the permission to jenkins_home
     sudo chown 1000:1000 jenkins_home -R
@@ -84,20 +96,7 @@ docker run -d -v C:\Users\rgajul\jenkins_home:/var/jenkins_home -p 2020:8080 -p 
     Cat /proc/cpuinfo | grep cores
 
 # Check memory
-    Free -h 
-
-  git: 
-    container_name: git-server  
-    image: 'gitlab/gitlab-ee:latest'  
-    hostname: gitlab.example.com  
-    ports:  
-      - '8090:80'  
-    volumes:   
-      - '/srv/gitlab/config:/etc/gitlab'  
-      - '/srv/gitlab/logs:/var/log/gitlab'  
-      - '/srv/gitlab/data:/var/opt/gitlab'  
-    networks:  
-      - net:  
+    Free -h  
 Cron jobs in Jenkins allow you to schedule tasks to run at specified intervals. Jenkins uses a syntax similar to Unix cron syntax but with a few differences. Here’s a breakdown of the syntax and how to use it in Jenkins:
 
 ### Cron Job Syntax Overview
