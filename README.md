@@ -7,19 +7,19 @@ docker run -d -v C:\Users\rgajul\jenkins_home:/var/jenkins_home -p 2020:8080 -p 
 # Docker-Compose
     docker run -d -v jenkins_home:/var/jenkins_home -p 2020:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
     Or use the below compose file (docker-compose up -d)
-    version: '3'
-    services:
-    jenkins:
+```yml
+ version: '3'
+ services:
+   jenkins:
     container_name: jenkins
     image: jenkins/jenkins
     ports:
-    - "8080:8080"
+      - "8080:8080"
     volumes:
-    - "$PWD/jenkins_home:/var/jenkins_home"
+      - "$PWD/jenkins_home:/var/jenkins_home"
     networks:
-    - net
-    networks:
-    net:
+      - net
+```
 
 # Get IP Address
     Ipconfig and get the internal ip address of the hostmachine and access
